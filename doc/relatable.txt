@@ -1,0 +1,18 @@
+*relatable.txt*  Relatable tab completion
+
+Author:  Zakhary Kaplan <https://github.com/zakharykaplan>
+License: Same terms as Vim itself (see |license|)
+
+This plugin is only available if 'compatible' is not set.
+
+INTRODUCTION                                    *relatable*
+
+This plugin provides mappings for tab completion.
+
+ABOUT                                           *relatable-about*
+
+Grab the latest version or report a bug on GitHub:
+
+https://github.com/zakharykaplan/vim-relatable
+
+ vim:tw=78:et:ft=help:norl:
