@@ -1,6 +1,6 @@
 " relatable.vim - Relatable tab completion
 " Maintainer:   Zakhary Kaplan <https://github.com/zakharykaplan>
-" Version:      0.1.0
+" Version:      0.1.1
 
 function! relatable#Complete(substr)
   " Set match patterns for completion search type
@@ -53,6 +53,9 @@ function! relatable#TabWrapper(shiftTab)
   " If no completion found, default to keywords in 'complete'
   if !len(completion)
     let completion = (a:shiftTab) ? "\<C-p>" : "\<C-n>"
+  " Start at bottom when not using 'noselect' and shift-tab pressed
+  elseif &completeopt !~# 'noselect' && a:shiftTab
+    let completion .= repeat(tabDirection, 2)
   endif
 
   " Return completion command
