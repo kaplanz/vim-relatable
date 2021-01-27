@@ -1,6 +1,7 @@
 " relatable.vim - Relatable tab completion
 " Maintainer:   Zakhary Kaplan <https://github.com/zakharykaplan>
 " Version:      0.1.1
+" SPDX-License-Identifier: Vim
 
 " Setup:
 if exists("g:loaded_relatable") || &compatible || v:version < 700
