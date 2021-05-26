@@ -1,9 +1,9 @@
 " relatable.vim - Relatable tab completion
 " Maintainer:   Zakhary Kaplan <https://github.com/zakharykaplan>
-" Version:      0.1.1
+" Version:      0.1.2
 " SPDX-License-Identifier: Vim
 
-function! relatable#Complete(substr)
+function! relatable#complete(substr)
   " Set match patterns for completion search type
   let filepat = (has('win32') || has('win64')) ? '\\\|\/' : '\/'
 
@@ -24,7 +24,7 @@ function! relatable#Complete(substr)
   return ''
 endfunction
 
-function! relatable#TabWrapper(shiftTab)
+function! relatable#tabwrapper(shiftTab)
   " Extract tabKey
   let tabKey = (a:shiftTab) ? "\<S-Tab>" : "\<Tab>"
 
@@ -50,7 +50,7 @@ function! relatable#TabWrapper(shiftTab)
   endif
 
   " Try completion
-  let completion = relatable#Complete(substr)
+  let completion = relatable#complete(substr)
   " If no completion found, default to keywords in 'complete'
   if !len(completion)
     let completion = (a:shiftTab) ? "\<C-p>" : "\<C-n>"
@@ -62,3 +62,5 @@ function! relatable#TabWrapper(shiftTab)
   " Return completion command
   return completion
 endfunction
+
+" vim:fdl=0:fdm=indent:
