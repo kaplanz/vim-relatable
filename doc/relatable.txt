@@ -1,6 +1,6 @@
 *relatable.txt*  Relatable tab completion
 
-Author:  Zakhary Kaplan <https://github.com/zakharykaplan>
+Author:  Zakhary Kaplan <https://zakharykaplan.ca>
 License: Same terms as Vim itself (see |license|)
 
 This plugin is only available if 'compatible' is not set.
