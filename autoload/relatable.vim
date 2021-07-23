@@ -1,9 +1,9 @@
 " relatable.vim - Relatable tab completion
 " Maintainer:   Zakhary Kaplan <https://zakharykaplan.ca>
-" Version:      0.1.2
+" Version:      0.1.3
 " SPDX-License-Identifier: Vim
 
-function! relatable#complete(substr)
+function! s:Complete(substr)
   " Set match patterns for completion search type
   let filepat = (has('win32') || has('win64')) ? '\\\|\/' : '\/'
 
@@ -24,20 +24,20 @@ function! relatable#complete(substr)
   return ''
 endfunction
 
-function! relatable#tabwrapper(shiftTab)
-  " Extract tabKey
-  let tabKey = (a:shiftTab) ? "\<S-Tab>" : "\<Tab>"
+function! s:TabWrapper(shift)
+  " Exteact tab key
+  let tabkey = (a:shift) ? "\<S-Tab>" : "\<Tab>"
 
-  " Determine tabDirection
+  " Determine direction
   if &completeopt =~# 'noinsert'
-    let tabDirection = (a:shiftTab) ? "\<Up>" : "\<Down>"
+    let direction = (a:shift) ? "\<Up>" : "\<Down>"
   else
-    let tabDirection = (a:shiftTab) ? "\<C-p>" : "\<C-n>"
+    let direction = (a:shift) ? "\<C-p>" : "\<C-n>"
   endif
 
   " Navigate through popup menu if visible
   if pumvisible()
-    return tabDirection
+    return direction
   endif
 
   " Get substr from current word
@@ -46,21 +46,29 @@ function! relatable#tabwrapper(shiftTab)
 
   " Pass through appropriate tab character if substr is empty
   if empty(substr)
-    return tabKey
+    return tabkey
   endif
 
-  " Try completion
-  let completion = relatable#complete(substr)
+  " Attempt completion
+  let completion = s:Complete(substr)
   " If no completion found, default to keywords in 'complete'
   if !len(completion)
-    let completion = (a:shiftTab) ? "\<C-p>" : "\<C-n>"
-  " Start at bottom when not using 'noselect' and shift-tab pressed
-  elseif &completeopt !~# 'noselect' && a:shiftTab
-    let completion .= repeat(tabDirection, 2)
+    let completion = (a:shift) ? "\<C-p>" : "\<C-n>"
+  " Start at bottom when not using 'noselect' and <S-Tab> pressed
+  elseif &completeopt !~# 'noselect' && a:shift
+    let completion .= repeat(direction, 2)
   endif
 
   " Return completion command
   return completion
+endfunction
+
+function! relatable#ShiftTab()
+  return s:TabWrapper(1)
+endfunction
+
+function! relatable#Tab()
+  return s:TabWrapper(0)
 endfunction
 
 " vim:fdl=0:fdm=indent:
