@@ -1,6 +1,6 @@
 " relatable.vim - Relatable tab completion
 " Maintainer:   Zakhary Kaplan <https://zakharykaplan.ca>
-" Version:      0.1.3
+" Version:      0.1.4
 " SPDX-License-Identifier: Vim
 
 function! s:Complete(substr)
@@ -10,13 +10,13 @@ function! s:Complete(substr)
   " Try completion
   if match(a:substr, filepat) != -1
     return "\<C-x>\<C-f>"
-  elseif &spell
+  elseif !empty(&spell)
     return "\<C-x>\<C-k>"
   elseif &filetype == 'vim'
     return "\<C-x>\<C-v>"
-  elseif &completefunc
+  elseif !empty(&completefunc)
     return "\<C-x>\<C-u>"
-  elseif &omnifunc
+  elseif !empty(&omnifunc)
     return "\<C-x>\<C-o>"
   endif
 
@@ -61,6 +61,10 @@ function! s:TabWrapper(shift)
 
   " Return completion command
   return completion
+endfunction
+
+function! relatable#Return()
+  return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 
 function! relatable#ShiftTab()

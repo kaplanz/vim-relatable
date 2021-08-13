@@ -1,6 +1,6 @@
 " relatable.vim - Relatable tab completion
 " Maintainer:   Zakhary Kaplan <https://zakharykaplan.ca>
-" Version:      0.1.3
+" Version:      0.1.4
 " SPDX-License-Identifier: Vim
 
 " Setup: {{{
@@ -23,6 +23,7 @@ augroup END
 " }}}
 
 " Mappings: {{{
+inoremap <expr> <Plug>RelatableReturn   relatable#Return()
 inoremap <expr> <Plug>RelatableTab      relatable#Tab()
 inoremap <expr> <Plug>RelatableShiftTab relatable#ShiftTab()
 if g:relatable_default_mappings
