@@ -1,8 +1,24 @@
 " relatable.vim - Relatable tab completion
 " Maintainer:   Zakhary Kaplan <https://zakharykaplan.ca>
-" Version:      0.1.4
+" Version:      0.1.5
 " SPDX-License-Identifier: Vim
 
+" Handle <CR> in a popup menu
+function! relatable#cr()
+  return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+
+" Handle <S-Tab> for completion
+function! relatable#stab()
+  return s:TabWrapper(1)
+endfunction
+
+" Handle <Tab> for completion
+function! relatable#tab()
+  return s:TabWrapper(0)
+endfunction
+
+" Suggest a complete method from a substring
 function! s:Complete(substr)
   " Set match patterns for completion search type
   let filepat = (has('win32') || has('win64')) ? '\\\|\/' : '\/'
@@ -24,6 +40,7 @@ function! s:Complete(substr)
   return ''
 endfunction
 
+" Wrap common tab behaviour
 function! s:TabWrapper(shift)
   " Exteact tab key
   let tabkey = (a:shift) ? "\<S-Tab>" : "\<Tab>"
@@ -61,18 +78,6 @@ function! s:TabWrapper(shift)
 
   " Return completion command
   return completion
-endfunction
-
-function! relatable#Return()
-  return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-
-function! relatable#ShiftTab()
-  return s:TabWrapper(1)
-endfunction
-
-function! relatable#Tab()
-  return s:TabWrapper(0)
 endfunction
 
 " vim:fdl=0:fdm=indent:
