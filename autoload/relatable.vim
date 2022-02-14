@@ -1,5 +1,5 @@
 " relatable.vim - Relatable tab completion
-" Maintainer:   Zakhary Kaplan <https://zakharykaplan.ca>
+" Maintainer:   Zakhary Kaplan <https://zakhary.dev>
 " Version:      0.1.5
 " SPDX-License-Identifier: Vim
 
