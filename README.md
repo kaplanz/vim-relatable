@@ -6,7 +6,7 @@ Install using your favorite package manager, or use Vim's built-in package
 support:
 
 ```bash
-git clone https://github.com/zakharykaplan/vim-relatable ~/.vim/pack/plugins/start/relatable.vim
+git clone https://github.com/kaplanz/vim-relatable ~/.vim/pack/plugins/start/relatable.vim
 ```
 
 ## License

@@ -13,6 +13,6 @@ ABOUT                                           *relatable-about*
 
 Grab the latest version or report a bug on GitHub:
 
-https://github.com/zakharykaplan/vim-relatable
+https://github.com/kaplanz/vim-relatable
 
  vim:tw=78:et:ft=help:norl:
